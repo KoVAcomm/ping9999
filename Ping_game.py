@@ -10,8 +10,8 @@ class Spirt(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
-        
-        
+        self.top = self.rect.top
+        self.botton = self.rect.bottom
     def reset(self):
         win.blit(self.image, (self.rect.x, self.rect.y))
 class Player(Spirt):
@@ -40,30 +40,19 @@ class ball(Player):
             if a == 0:
                 self.speed *= 1
                 self.speed_1 *= -1
-                #self.rect.y += self.speed
+                
             elif a == 1:
-                #self.rect.x -= self.speed
+                
                 self.speed *= -1
                 self.speed_1*=1
         else:
-            # if self.rect.x <= 0 and self.rect.y <= 0:
-            #     self.speed *= -1
-            #     self.speed_1 *= -1
-            # if self.rect.x >= 700 and self.rect.y >= 410:
-            #     self.speed *= -1
-            #     self.speed_1 *= -1
-            # if self.rect.x <= 0 and self.rect.y >= 410:
-            #     self.speed *= -1
-            #     self.speed_1 *= -1
-            # if self.rect.x >= 700 and self.rect.y <= 0:
-            #     self.speed *= -1
-            #     self.speed_1 *= -1
+           
             if self.rect.x <= 0 or self.rect.x >= 700:
 
                 self.speed *= -1
                 self.speed_1 *= 1
-            #if self.rect.y <= 0 or self.rect.y 
-            if self.rect.y >= 410 or self.rect.y <= 0:
+            
+            if self.rect.y >= 450 or self.rect.y <= 0:
                 self.speed *= 1
                 self.speed_1 *= -1
             
@@ -71,8 +60,8 @@ class ball(Player):
         self.rect.y += self.speed_1
 
 back = Spirt("C:/Users/guest/OneDrive/Рабочий стол/Ping_999/p_back.png", 750, 500, 0, 0)
-player = Player("C:/Users/guest/OneDrive/Рабочий стол/Ping_999/gamer_1.png", 25, 88, 35, 150, 5)
-player_1 = Player("C:/Users/guest/OneDrive/Рабочий стол/Ping_999/gamer_2.png", 25, 88, 680, 150, 5)
+player = Player("C:/Users/guest/OneDrive/Рабочий стол/Ping_999/gamer_1.png", 25, 88, 35, 150, 10)
+player_1 = Player("C:/Users/guest/OneDrive/Рабочий стол/Ping_999/gamer_2.png", 25, 88, 680, 150, 10)
 balli = ball("C:/Users/guest/OneDrive/Рабочий стол/Ping_999/ball.png", 50, 50, 250, 300, 10, 10)
 clock = pygame.time.Clock()
 game = True
@@ -96,6 +85,12 @@ while game:
     player.wasd()
     player_1.reset()
     player_1.wasd_1()
+    if pygame.sprite.collide_rect(balli, player) or pygame.sprite.collide_rect(balli, player_1):
+        balli.speed *= -1
+        if (balli.rect.y ==  player.top or balli.rect.y ==  player.botton) or (balli.rect.y ==  player_1.top or balli.rect.y ==  player_1.botton):
+            balli.speed_1*=-1
+
+
     i = 10
     pygame.display.update()
     clock.tick(60)
