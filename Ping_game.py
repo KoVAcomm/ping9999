@@ -46,23 +46,24 @@ class ball(Player):
                 self.speed *= -1
                 self.speed_1*=1
         else:
-            if self.rect.x <= 0 and self.rect.y <= 0:
-                self.speed *= -1
-                self.speed_1 *= -1
-            if self.rect.x >= 700 and self.rect.y >= 410:
-                self.speed *= -1
-                self.speed_1 *= -1
-            if self.rect.x <= 0 and self.rect.y >= 410:
-                self.speed *= -1
-                self.speed_1 *= -1
-            if self.rect.x >= 700 and self.rect.y <= 0:
-                self.speed *= -1
-                self.speed_1 *= -1
-            if (self.rect.x <= 0 and ((self.rect.y <= 0) == False)) or (self.rect.x >= 700 and ((self.rect.y >= 410)==False)):
+            # if self.rect.x <= 0 and self.rect.y <= 0:
+            #     self.speed *= -1
+            #     self.speed_1 *= -1
+            # if self.rect.x >= 700 and self.rect.y >= 410:
+            #     self.speed *= -1
+            #     self.speed_1 *= -1
+            # if self.rect.x <= 0 and self.rect.y >= 410:
+            #     self.speed *= -1
+            #     self.speed_1 *= -1
+            # if self.rect.x >= 700 and self.rect.y <= 0:
+            #     self.speed *= -1
+            #     self.speed_1 *= -1
+            if self.rect.x <= 0 or self.rect.x >= 700:
+
                 self.speed *= -1
                 self.speed_1 *= 1
-            
-            if (((self.rect.x <= 0)==False) and self.rect.y >= 410) or (((self.rect.x >= 700) == False) and self.rect.y <= 0):
+            #if self.rect.y <= 0 or self.rect.y 
+            if self.rect.y >= 410 or self.rect.y <= 0:
                 self.speed *= 1
                 self.speed_1 *= -1
             
@@ -72,7 +73,7 @@ class ball(Player):
 back = Spirt("C:/Users/guest/OneDrive/Рабочий стол/Ping_999/p_back.png", 750, 500, 0, 0)
 player = Player("C:/Users/guest/OneDrive/Рабочий стол/Ping_999/gamer_1.png", 25, 88, 35, 150, 5)
 player_1 = Player("C:/Users/guest/OneDrive/Рабочий стол/Ping_999/gamer_2.png", 25, 88, 680, 150, 5)
-balli = ball("C:/Users/guest/OneDrive/Рабочий стол/Ping_999/ball.png", 60, 60, 250, 300, 10, 10)
+balli = ball("C:/Users/guest/OneDrive/Рабочий стол/Ping_999/ball.png", 50, 50, 250, 300, 10, 10)
 clock = pygame.time.Clock()
 game = True
 flag_start = True
